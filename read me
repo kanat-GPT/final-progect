@@ -1,0 +1,26 @@
+Presentation: Recipe Management Application in Java
+Introduction
+Hi everyone, today I’m presenting my Recipe Management Application, which I built using Java. This program lets users manage recipes through a simple graphical interface. You can add, edit, delete, and view recipes, and the data is saved to a file so it persists between sessions. I’ve also cleaned up the code by fixing some warnings that IntelliJ IDEA pointed out, making it better overall.
+
+Program Overview
+The purpose of this app is to help users organize their recipes by storing details like the recipe name, category, ingredients, and instructions. It has a few key features: you can add a new recipe with a single ingredient, category, and instructions; edit an existing recipe’s name and category; delete recipes by name; view all recipes in a text area; and the app automatically saves recipes to a file called recipes.dat and loads them when you restart the program.
+
+Code Structure
+The program is split into four main classes. First, there’s the Ingredient class, which holds details like the name, quantity, and unit of an ingredient, and it implements Serializable so we can save it to a file. Then, the Recipe class represents a recipe with its name, category, a list of ingredients, and instructions—it also implements Serializable. The RecipeManager class handles the list of recipes, taking care of adding, deleting, and saving or loading them from the file. Finally, the Main class sets up the GUI using Java Swing and manages user interactions.
+
+Technical Highlights
+The GUI is built with Java Swing. The main window is a JFrame that has buttons for adding, editing, and deleting recipes. There’s a JTextArea to display all the recipes, and it’s wrapped in a JScrollPane so you can scroll through them. When you add or edit a recipe, a dialog window (JDialog) pops up to let you enter the details. For data persistence, the app saves recipes to recipes.dat using ObjectOutputStream for serialization and loads them back with ObjectInputStream when the program starts. I also added error handling: it catches invalid input for ingredient quantities with a try-catch block for NumberFormatException, and it handles file I/O errors when saving or loading recipes.
+
+I made several improvements to the code based on IntelliJ’s warnings. I added the @Serial annotation to the serialVersionUID fields in both Ingredient and Recipe classes to make the serialization clearer. I marked fields like name, quantity, and unit in Ingredient, and ingredients in Recipe, as final since they’re only set once and never changed. I removed unused methods like getIngredients() and getInstructions() from Recipe to clean things up. I also simplified some lambda expressions by removing unused e parameters in ActionListener implementations, removed an unnecessary toString() call in Recipe, and used a method reference in SwingUtilities.invokeLater() to make the code more concise.
+
+How It Works
+Let me walk you through how the app works. To add a recipe, you click "Add Recipe," and a dialog pops up where you enter the name, category, one ingredient, and instructions, then save it. To edit a recipe, you enter its name, and a dialog lets you update the name and category. To delete, you just enter the recipe name, and it’s removed. All recipes are shown in the text area, and the display updates after every action. The app also saves everything to a file, so if you restart, your recipes are still there.
+
+Demonstration
+I’ll show you a quick demo. First, I’ll launch the program. Now, I’ll add a recipe—let’s say "Borscht," in the category "Soups," with an ingredient "Beetroot, 2, pcs," and instructions "Cook for 30 minutes." Next, I’ll edit it to change the name to "Red Borscht." Then, I’ll delete the recipe. Finally, I’ll restart the program to show that the recipes are saved and loaded back correctly.
+
+Code Quality Improvements
+I made some changes to improve the code quality based on IntelliJ’s warnings. I removed unused methods and parameters, which reduced clutter in the code. I marked fields as final where they weren’t being changed, which makes the code safer and clearer. I also simplified some lambda expressions and removed an unnecessary toString() call. These changes make the code cleaner, easier to maintain, and more aligned with Java best practices, while also improving readability for future updates.
+
+Possible Improvements
+There are a few things I could add to make the app even better. I could allow users to add multiple ingredients to a recipe, include a search feature to find recipes by name or category, add a confirmation dialog before deleting recipes, or improve the GUI with better styling or features like sorting recipes.
